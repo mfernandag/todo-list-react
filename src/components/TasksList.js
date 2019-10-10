@@ -1,8 +1,4 @@
-import React from 'react'
-<<<<<<< HEAD
-//import { List, ListItem, ListItemText } 
-
-=======
+import React from 'react';
 import { List, ListItem, ListItemText } from '@material-ui/core'
 
 const TasksList = ({ data }) => {
@@ -18,4 +14,3 @@ const TasksList = ({ data }) => {
 }
 
 export default TasksList
->>>>>>> f52dd48d040c44c55c79fe1dbdad727a4262144a

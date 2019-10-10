@@ -34,13 +34,7 @@ class App extends React.Component {
 					onKeyPress={(e) => this.enterHandler(e)}
 					variant="outlined"
 				/>
-<<<<<<< HEAD
-				{this.state.todo.map( (e, i) => {
-					<p>{e}</p>
-				})}
-=======
 				<TasksList data={[ ...this.state.todo ]} />
->>>>>>> f52dd48d040c44c55c79fe1dbdad727a4262144a
 			</Container>
 		)
 	}
