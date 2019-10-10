@@ -33,6 +33,9 @@ class App extends React.Component {
 					onKeyPress={(e) => this.enterHandler(e)}
 					variant="outlined"
 				/>
+				{this.state.todo.map( (e, i) => {
+					<p>{e}</p>
+				})}
 			</Container>
 		)
 	}
