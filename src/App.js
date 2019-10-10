@@ -1,10 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { CssBaseline, Container } from '@material-ui/core'
 import TextField from '@material-ui/core/TextField'
-import nextId from 'react-id-generator'
 import TasksList from './components/TasksList'
 
-class App extends Component {
+class App extends React.Component {
 	state = {
 		task: '',
 		todo: []
@@ -16,26 +15,22 @@ class App extends Component {
 
 	enterHandler = (e) => {
 		if (e.key === 'Enter') {
-			this.saveTask(e.target.name)
+			let value = this.state[e.target.name]
+			let newTodo = [ ...this.state.todo, value ]
+			this.setState({ task: '', todo: newTodo })
 		}
 	}
 
 	saveTask = (field) => {
 		let value = this.state[field]
-		let newTodo = [ ...this.state.todo, { id: nextId('task-'), text: value, status: 'pending' } ]
-		this.setState({ [field]: '', todo: newTodo })
+		let newTodo = [ ...this.state.todo, [{text: value, status: "pending"}]]
 	}
 
-	changeStatus = (id) => {
-		let newTodo = [ ...this.state.todo ]
-		let task = newTodo.find((e) => e.id === id)
-		task.status = task.status === 'pending' ? 'completed' : 'pending'
-		this.setState({ todo: newTodo })
+	changeStatus = (elem) => {
+
 	}
 
 	render() {
-		const completed = [ ...this.state.todo.filter((e) => e.status === 'completed') ]
-		const pending = [ ...this.state.todo.filter((e) => e.status === 'pending') ]
 		return (
 			<Container>
 				<CssBaseline />
@@ -48,9 +43,8 @@ class App extends Component {
 					onKeyPress={(e) => this.enterHandler(e)}
 					variant="outlined"
 				/>
-				<TasksList title={'pendientes'} tag={'( )'} data={pending} changeStatus={this.changeStatus} />
-				<TasksList title={'completadas'} tag={'(x)'} data={completed} changeStatus={this.changeStatus} />
-			</Container>
+				<TasksList data={[ ...this.state.todo ]} changeStatus={this.change}/>
+			</Container> 
 		)
 	}
 }
